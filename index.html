@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-graph.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-ui.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.anychart.com/releases/8.11.0/css/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.anychart.com/releases/8.11.0/fonts/css/anychart-font.min.css"
+    />
+    <title>MST Visualizer</title>
+  </head>
+  <style>
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #212529;
+      color: white;
+      text-align: center;
+    }
+    #container {
+      border: 1px solid black;
+      width: 70%;
+      height: 450px;
+      margin: 1rem;
+      margin-left: 2.6rem;
+      padding: 0;
+    }
+    #result-container {
+      border: 1px solid rgb(71, 233, 71);
+      width: 70%;
+      height: 450px;
+      margin: 1rem;
+      padding: 0;
+    }
+
+    @media only screen and (max-width: 900px) {
+      #main-box {
+        flex-direction: column;
+      }
+    }
+    @media only screen and (max-width: 1082px) {
+      #container {
+        border: 1px solid black;
+        width: 90%;
+        height: 400px;
+        margin: 1rem;
+        padding: 0;
+      }
+      #result-container {
+        border: 1px solid rgb(71, 233, 71);
+        width: 90%;
+        height: 400px;
+        margin: 1rem;
+        padding: 0;
+      }
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html">MST Visualizer</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"><i class="fa fa-house"></i> Home <span class="sr-only">(current)</span></a>
+          </li>
+          
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-star-of-life"></i> Examples
+            </a>
+            <div class="dropdown-menu">
+              <h5 class="dropdown-header">Prims Algorithm</h5>
+              <a class="dropdown-item" target="_blank" href="https://youtu.be/cplfcGZmX7I"><i class="fa-solid fa-book-open-reader"></i> Explanation</a>
+              <a class="dropdown-item" target="_blank" href="https://www.programiz.com/dsa/prim-algorithm"><i class="fa-solid fa-pen"></i> Example</a>
+              <a class="dropdown-item" target="_blank" href="https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/"><i class="fa-solid fa-hashtag"></i> Code</a>
+              <h5 class="dropdown-header">Kruskals Algorithm</h5>
+              <a class="dropdown-item" target="_blank" href="https://youtu.be/71UQH7Pr9kU"><i class="fa-solid fa-book-open-reader"></i> Explanation</a>
+              <a class="dropdown-item" target="_blank" href="https://www.programiz.com/dsa/kruskal-algorithm"><i class="fa-solid fa-pen"></i> Example</a>
+              <a class="dropdown-item" target="_blank" href="https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/"><i class="fa-solid fa-hashtag"></i> Code</a>
+            </div>
+          </li>
+        </ul>
+<!--
+          <span style="cursor: pointer;" class="nav-link text-light" data-html="true" data-trigger="click" data-toggle="tooltip" data-placement="bottom" id="element" title="<input hidden readonly type='text' value='[[0, 2, 0, 6, 0], [2, 0, 3, 8, 5], [0, 3, 0, 0, 7], [6, 8, 0, 0, 9], [0, 5, 7, 9, 0]]' id='myInput1'>
+            <button title='Click to copy' class='btn btn-sm btn-info my-1' onClick='myFunction1()'>Sample 1</button><br/>
+            <input hidden readonly type='text' value='[[0,1,7,10,5],[1,0,3,0,0],[7,3,0,4,0],[10,0,4,0,2],[5,0,0,2,0]]' id='myInput2'>
+            <button title='Click to copy' class='btn btn-sm btn-primary my-1' onClick='myFunction2()'>Sample 2</button>">
+            <i class="fa fa-code"></i> Sample Input 
+            <span class="sr-only">(current)</span>
+          </span>
+-->
+      </div>
+
+    </nav>
+
+    <div class="mx-1 my-2 row">
+      <div class="col-md-8">
+        <label class="col-md-10 my-2">ENTER ADJACENCY MATRIX: </label>
+        <input
+          class="col-md-10 form-control"
+          type="text"
+          name="matrix-value"
+          id="matrix-value"
+          placeholder="Enter adjacency matrix"
+        />
+        <button class="col-md-3 mt-2 btn btn-info" onclick="fetchMatrix()">
+          Draw Graph
+        </button>
+
+        <label class="form-check-label ml-4">Select Algorithm : </label>
+        <div class="form-check form-check-inline">
+          <input
+          for="inlineRadio1"
+            class="form-check-input"
+            checked
+            type="radio"
+            name="inlineRadioOptions"
+            id="prim"
+            value="prims"
+          />
+          <label class="form-check-label" for="inlineRadio1">Prims</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="kruskal"
+            value="kruskals"
+          />
+          <label class="form-check-label" for="inlineRadio2">Kruskal</label>
+        </div>
+      </div>
+
+      <div class="col-md-3 my-1" style="border: 1px solid rgb(103, 252, 250)">
+        <div id="res" class="text-center display-5 p-1 col-md-12">
+          Minimum spanning edges
+          <hr />
+        </div>
+        <ol id="textResult"></ol>
+      </div>
+
+      <div id="main-box" class="text-center container col-md-12 d-flex">
+        <div class="col-md-6" style="display: none" id="container"></div>
+        <div class="col-md-6" style="display: none" id="result-container"></div>
+      </div>
+
+      <footer class="footer col-md-12">
+        <p class="text-center">©Copyright 2023. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+    function myFunction1() {
+      
+  var copyText1 = document.getElementById("myInput1");
+  copyText1.select();
+  copyText1.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText1.value);
+  alert("Sample Input Copied!!")
+  
+  
+}
+function myFunction2() {
+  var copyText2 = document.getElementById("myInput2");
+  copyText2.select();
+  copyText2.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText2.value);
+  alert("Sample Input Copied!!")
+  
+}
+    </script>
+  <script>
+    function fetchMatrix() {
+      document.getElementById('textResult').innerHTML = '';
+      if (JSON.parse(document.getElementById("matrix-value").value)) {
+        var radioValue = document.querySelector(
+          'input[name="inlineRadioOptions"]:checked'
+        ).value;
+
+        console.log(radioValue);
+
+        document.getElementById("container").remove();
+        var newdiv = document.createElement("div");
+        var mainBox = document.getElementById("main-box");
+        newdiv.setAttribute("id", "container");
+        newdiv.classList.add("col-md-5");
+        newdiv.classList.add("text-center");
+        mainBox.appendChild(newdiv);
+
+        var mat = JSON.parse(document.getElementById("matrix-value").value);
+        // console.log(mat)
+        var vertices = mat[0].length;
+
+        nodes = [];
+
+        for (let index = 0; index < vertices; index++) {
+          let obj = {
+            id: String.fromCharCode(parseInt(65 + index)),
+            nodeName: String.fromCharCode(parseInt(65 + index)),
+          };
+          nodes.push(obj);
+        }
+
+        console.log(nodes);
+
+        edges = [];
+
+        //For directed graph
+        // for (let i = 0; i < vertices; i++) {
+        //   for (let j = 0; j < vertices; j++) {
+        //     if(mat[i][j] > 0){
+        //       let edgeObj = {from: `${i}`, to: `${j}`}
+        //       edges.push(edgeObj)
+        //     }
+        //   }
+        // }
+
+        // For undirected graph
+        for (let i = 0; i < vertices; i++) {
+          for (let j = 0; j <= i; j++) {
+            if (mat[i][j] > 0) {
+              let edgeObj = {
+                from: String.fromCharCode(parseInt(65 + i)),
+                to: String.fromCharCode(parseInt(65 + j)),
+                dist: `${mat[i][j]}`,
+                normal: { stroke: { color: "#ffa000", thickness: "3" } },
+              };
+              edges.push(edgeObj);
+            }
+          }
+        }
+
+        console.log(edges);
+
+        anychart.onDocumentReady(function () {
+          // create data
+          var data = {
+            nodes: nodes,
+            edges: edges,
+          };
+
+          // create a chart and set the data
+          var chart = anychart.graph(data);
+
+          // prevent zooming the chart with the mouse wheel
+          chart.interactivity().zoomOnMouseWheel(false);
+
+          // enable labels of nodes
+          chart.nodes().labels().enabled(true);
+
+          // configure labels of nodes
+          chart.nodes().height(20);
+          chart.nodes().labels().format("{%nodeName}");
+          chart.nodes().labels().fontSize(15);
+          chart.nodes().labels().fontWeight(550);
+
+          // configure tooltips of nodes
+          chart.nodes().tooltip().useHtml(true);
+          chart
+            .nodes()
+            .tooltip()
+            .format("<span style='font-weight:bold'>{%id} </span>");
+
+          // enable labels of edges
+          chart.edges().labels().enabled(true);
+
+          // configure labels of nodes
+          chart.edges().labels().format("{%dist}");
+          chart.edges().labels().fontSize(15);
+          chart.edges().labels().fontWeight(550);
+
+          // configure tooltips of edges
+          chart
+            .edges()
+            .tooltip()
+            .format("{%from} -> {%to} or {%to} -> {%from}");
+
+          // set the chart title
+          chart.title("Given Graph");
+
+          // set the container id
+          chart.container("container");
+          chart.interactivity().zoomOnMouseWheel(true);
+          // initiate drawing the chart
+          chart.draw();
+        });
+
+        // ----------------------------------------------------------------------------------------------------------------------
+
+        // ----------------------------------------------------------------------------------------------------------------------
+
+        if (radioValue == "prims") {
+          let V = vertices;
+
+          // A utility function to find the vertex with
+          // minimum key value, from the set of vertices
+          // not yet included in MST
+          function minKey(key, mstSet) {
+            // Initialize min value
+            let min = Number.MAX_VALUE,
+              min_index;
+
+            for (let v = 0; v < V; v++)
+              if (mstSet[v] == false && key[v] < min)
+                (min = key[v]), (min_index = v);
+
+            return min_index;
+          }
+
+          // A utility function to print the
+          // constructed MST stored in parent[]
+
+          function sleep(time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+          }
+
+          async function printMST(parent, graph) {
+            for (let i = 1; i < V; i++) {
+              await sleep(5000);
+              document.getElementById("res").classList.add("d-block");
+              var listele = document.createElement("li");
+              // Create a text node:
+              console.log(
+                `${String.fromCharCode(
+                  parent[i] + 65
+                )} --> ${String.fromCharCode(i + 65)}`
+              );
+              const textnode = document.createTextNode(
+                `${String.fromCharCode(
+                  parent[i] + 65
+                )} --> ${String.fromCharCode(i + 65)}`
+              );
+              // Append the text node to the "li" node:
+              listele.classList.add("badge");
+              listele.classList.add("badge-secondary");
+              listele.classList.add("mx-1");
+              listele.classList.add("my-1");
+              listele.appendChild(textnode);
+              // Append the "li" node to the list:
+              document.getElementById("textResult").appendChild(listele);
+
+              // document.write(parent[i] + "   -  " + i + "<br>");
+              edges.forEach((element, ind) => {
+                // console.log("---->",element.from.charCodeAt(0)-65,element.to.charCodeAt(0)-65)
+                if (
+                  (element.from.charCodeAt(0) - 65 == String(parent[i]) &&
+                    element.to.charCodeAt(0) - 65 == String(i)) ||
+                  (element.from.charCodeAt(0) - 65 == String(i) &&
+                    element.to.charCodeAt(0) - 65 == String(parent[i]))
+                ) {
+                  console.log("helooooooooooooooooooooooooooo");
+                  edges.push({
+                    from: `${element.from}`,
+                    to: `${element.to}`,
+                    dist: `${element.dist}`,
+                    normal: {
+                      stroke: {
+                        color: "#000000",
+                        thickness: "4",
+                        dash: "10 5",
+                      },
+                    },
+                  });
+                  edges.splice(ind, 1);
+
+                  anychart.onDocumentReady(function () {
+                    document.getElementById("result-container").remove();
+                    var newresultdiv = document.createElement("div");
+                    var mainBox = document.getElementById("main-box");
+                    newresultdiv.setAttribute("id", "result-container");
+                    newresultdiv.classList.add("col-md-6");
+                    newresultdiv.classList.add("text-center");
+                    mainBox.appendChild(newresultdiv);
+
+                    // create data
+                    var data = {
+                      nodes: nodes,
+                      edges: edges,
+                    };
+
+                    // create a chart and set the data
+                    var chart = anychart.graph(data);
+
+                    // prevent zooming the chart with the mouse wheel
+                    chart.interactivity().zoomOnMouseWheel(false);
+
+                    // enable labels of nodes
+                    chart.nodes().labels().enabled(true);
+
+                    // configure labels of nodes
+                    chart.nodes().height(20);
+                    chart.nodes().labels().format("{%nodeName}");
+                    chart.nodes().labels().fontSize(15);
+                    chart.nodes().labels().fontWeight(550);
+
+                    // enable labels of edges
+                    chart.edges().labels().enabled(true);
+
+                    // configure labels of nodes
+                    chart.edges().labels().format("{%dist}");
+                    chart.edges().labels().fontSize(15);
+                    chart.edges().labels().fontWeight(550);
+
+                    // configure tooltips of nodes
+                    chart.nodes().tooltip().useHtml(true);
+                    chart
+                      .nodes()
+                      .tooltip()
+                      .format("<span style='font-weight:bold'>{%id} </span>");
+
+                    // configure tooltips of edges
+                    chart
+                      .edges()
+                      .tooltip()
+                      .format("{%from} -> {%to} or {%to} -> {%from}");
+
+                    // set the chart title
+                    chart.title("MST using Prims Algorithm");
+
+                    // set the container id
+                    chart.container("result-container");
+                    chart.interactivity().zoomOnMouseWheel(true);
+                    // initiate drawing the chart
+                    chart.draw();
+                  });
+                }
+              });
+            }
+            // console.log("edddgees====>",edges)
+
+            // ----------------------------------------------------------------------------
+
+            // ----------------------------------------------------------------------------
+          }
+
+          // Function to construct and print MST for
+          // a graph represented using adjacency
+          // matrix representation
+          function primMST(graph) {
+            // Array to store constructed MST
+            let parent = [];
+
+            // Key values used to pick minimum weight edge in cut
+            let key = [];
+
+            // To represent set of vertices included in MST
+            let mstSet = [];
+
+            // Initialize all keys as INFINITE
+            for (let i = 0; i < V; i++)
+              (key[i] = Number.MAX_VALUE), (mstSet[i] = false);
+
+            // Always include first 1st vertex in MST.
+            // Make key 0 so that this vertex is picked as first vertex.
+            key[0] = 0;
+            parent[0] = -1; // First node is always root of MST
+
+            // The MST will have V vertices
+            for (let count = 0; count < V - 1; count++) {
+              // Pick the minimum key vertex from the
+              // set of vertices not yet included in MST
+              let u = minKey(key, mstSet);
+
+              // Add the picked vertex to the MST Set
+              mstSet[u] = true;
+
+              // Update key value and parent index of
+              // the adjacent vertices of the picked vertex.
+              // Consider only those vertices which are not
+              // yet included in MST
+              for (let v = 0; v < V; v++)
+                // graph[u][v] is non zero only for adjacent vertices of m
+                // mstSet[v] is false for vertices not yet included in MST
+                // Update the key only if graph[u][v] is smaller than key[v]
+                if (graph[u][v] && mstSet[v] == false && graph[u][v] < key[v])
+                  (parent[v] = u), (key[v] = graph[u][v]);
+            }
+
+            // print the constructed MST
+            printMST(parent, graph);
+          }
+
+          // Driver code
+
+          let graph = mat;
+
+          // Print the solution
+          primMST(graph);
+        } else if (radioValue == "kruskals") {
+          function sleep(time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+          }
+
+          class UnionFind {
+            constructor(size) {
+              this.parent = new Array(size);
+              this.rank = new Array(size);
+              for (let i = 0; i < size; i++) {
+                this.parent[i] = i;
+                this.rank[i] = 0;
+              }
+            }
+
+            find(x) {
+              if (this.parent[x] !== x) {
+                this.parent[x] = this.find(this.parent[x]);
+              }
+              return this.parent[x];
+            }
+
+            union(x, y) {
+              const rootX = this.find(x);
+              const rootY = this.find(y);
+              if (rootX !== rootY) {
+                if (this.rank[rootX] < this.rank[rootY]) {
+                  this.parent[rootX] = rootY;
+                } else if (this.rank[rootX] > this.rank[rootY]) {
+                  this.parent[rootY] = rootX;
+                } else {
+                  this.parent[rootY] = rootX;
+                  this.rank[rootX]++;
+                }
+              }
+            }
+          }
+
+          function kruskal(graph) {
+            const edges = [];
+            for (let i = 0; i < graph.length; i++) {
+              for (let j = i + 1; j < graph.length; j++) {
+                if (graph[i][j] !== 0) {
+                  edges.push([i, j, graph[i][j]]);
+                }
+              }
+            }
+            edges.sort((a, b) => a[2] - b[2]);
+
+            const uf = new UnionFind(graph.length);
+            const mst = [];
+
+            for (const [u, v, w] of edges) {
+              if (uf.find(u) !== uf.find(v)) {
+                uf.union(u, v);
+                mst.push([u, v, w]);
+              }
+            }
+
+            return mst;
+          }
+
+          const graph = mat;
+
+          const mst = kruskal(graph);
+          console.log(mst);
+
+          async function load() {
+            for (let i = 0; i < mst.length; i++) {
+              const arrel = mst[i];
+              await sleep(5000);
+
+              var listele = document.createElement("li");
+              const textnode = document.createTextNode(
+                `${String.fromCharCode(
+                  arrel[0] + 65
+                )} --> ${String.fromCharCode(arrel[1] + 65)}`
+              );
+              // Append the text node to the "li" node:
+              listele.classList.add("badge");
+              listele.classList.add("badge-secondary");
+              listele.classList.add("mx-1");
+              listele.classList.add("my-1");
+              listele.appendChild(textnode);
+              // Append the "li" node to the list:
+              document.getElementById("textResult").appendChild(listele);
+
+
+              
+              edges.forEach((element, ind) => {
+                if (
+                  ((String.fromCharCode(arrel[0] + 65) == element.from) &&
+                    (String.fromCharCode(arrel[1] + 65) == element.to)) ||
+                  ((String.fromCharCode(arrel[1] + 65) == element.from) &&
+                    (String.fromCharCode(arrel[0] + 65) == element.to))
+                ) {
+                  edges.push({
+                    from: `${element.from}`,
+                    to: `${element.to}`,
+                    dist: `${element.dist}`,
+                    normal: {
+                      stroke: {
+                        color: "#000000",
+                        thickness: "4",
+                        dash: "10 5",
+                      },
+                    },
+                  });
+                  edges.splice(ind, 1);
+
+                  anychart.onDocumentReady(function () {
+                    document.getElementById("result-container").remove();
+                    var mainBox = document.getElementById("main-box");
+                    var newresultdiv = document.createElement("div");
+                    newresultdiv.setAttribute("id", "result-container");
+                    newresultdiv.classList.add("col-md-6");
+                    newresultdiv.classList.add("text-center");
+                    mainBox.appendChild(newresultdiv);
+
+                    // create data
+                    var data = {
+                      nodes: nodes,
+                      edges: edges,
+                    };
+
+                    // create a chart and set the data
+                    var chart = anychart.graph(data);
+
+                    // prevent zooming the chart with the mouse wheel
+                    chart.interactivity().zoomOnMouseWheel(false);
+
+                    // enable labels of nodes
+                    chart.nodes().labels().enabled(true);
+
+                    // configure labels of nodes
+                    chart.nodes().height(20);
+                    chart.nodes().labels().format("{%nodeName}");
+                    chart.nodes().labels().fontSize(15);
+                    chart.nodes().labels().fontWeight(550);
+
+                    // enable labels of edges
+                    chart.edges().labels().enabled(true);
+
+                    // configure labels of nodes
+                    chart.edges().labels().format("{%dist}");
+                    chart.edges().labels().fontSize(15);
+                    chart.edges().labels().fontWeight(550);
+
+                    // configure tooltips of nodes
+                    chart.nodes().tooltip().useHtml(true);
+                    chart
+                      .nodes()
+                      .tooltip()
+                      .format("<span style='font-weight:bold'>{%id} </span>");
+
+                    // configure tooltips of edges
+                    chart
+                      .edges()
+                      .tooltip()
+                      .format("{%from} -> {%to} or {%to} -> {%from}");
+
+                    // set the chart title
+                    chart.title("MST using Kruskals Algorithm");
+
+                    // set the container id
+                    chart.container("result-container");
+                    chart.interactivity().zoomOnMouseWheel(true);
+                    // initiate drawing the chart
+                    chart.draw();
+                  });
+                }
+              });
+
+              
+            }
+
+          }
+          load();
+        }
+
+
+      } else {
+        alert("Please input adjacency matrix and try again.");
+      }
+    }
+  </script>
+</html>
