@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-graph.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-ui.min.js"></script>
@@ -92,37 +98,84 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html"><i class="fa fa-house"></i> Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html"
+              ><i class="fa fa-house"></i> Home
+              <span class="sr-only">(current)</span></a
+            >
           </li>
-          
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
               <i class="fa-solid fa-star-of-life"></i> Examples
             </a>
             <div class="dropdown-menu">
               <h5 class="dropdown-header">Prims Algorithm</h5>
-              <a class="dropdown-item" target="_blank" href="https://youtu.be/cplfcGZmX7I"><i class="fa-solid fa-book-open-reader"></i> Explanation</a>
-              <a class="dropdown-item" target="_blank" href="https://www.programiz.com/dsa/prim-algorithm"><i class="fa-solid fa-pen"></i> Example</a>
-              <a class="dropdown-item" target="_blank" href="https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/"><i class="fa-solid fa-hashtag"></i> Code</a>
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://youtu.be/cplfcGZmX7I"
+                ><i class="fa-solid fa-book-open-reader"></i> Explanation</a
+              >
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://www.programiz.com/dsa/prim-algorithm"
+                ><i class="fa-solid fa-pen"></i> Example</a
+              >
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/"
+                ><i class="fa-solid fa-hashtag"></i> Code</a
+              >
               <h5 class="dropdown-header">Kruskals Algorithm</h5>
-              <a class="dropdown-item" target="_blank" href="https://youtu.be/71UQH7Pr9kU"><i class="fa-solid fa-book-open-reader"></i> Explanation</a>
-              <a class="dropdown-item" target="_blank" href="https://www.programiz.com/dsa/kruskal-algorithm"><i class="fa-solid fa-pen"></i> Example</a>
-              <a class="dropdown-item" target="_blank" href="https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/"><i class="fa-solid fa-hashtag"></i> Code</a>
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://youtu.be/71UQH7Pr9kU"
+                ><i class="fa-solid fa-book-open-reader"></i> Explanation</a
+              >
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://www.programiz.com/dsa/kruskal-algorithm"
+                ><i class="fa-solid fa-pen"></i> Example</a
+              >
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/"
+                ><i class="fa-solid fa-hashtag"></i> Code</a
+              >
             </div>
           </li>
         </ul>
-<!--
-          <span style="cursor: pointer;" class="nav-link text-light" data-html="true" data-trigger="click" data-toggle="tooltip" data-placement="bottom" id="element" title="<input hidden readonly type='text' value='[[0, 2, 0, 6, 0], [2, 0, 3, 8, 5], [0, 3, 0, 0, 7], [6, 8, 0, 0, 9], [0, 5, 7, 9, 0]]' id='myInput1'>
+
+        <span
+          style="cursor: pointer"
+          class="nav-link text-light"
+          data-html="true"
+          data-trigger="click"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          id="element"
+          title="<input hidden readonly type='text' value='[[0, 2, 0, 6, 0], [2, 0, 3, 8, 5], [0, 3, 0, 0, 7], [6, 8, 0, 0, 9], [0, 5, 7, 9, 0]]' id='myInput1'>
             <button title='Click to copy' class='btn btn-sm btn-info my-1' onClick='myFunction1()'>Sample 1</button><br/>
             <input hidden readonly type='text' value='[[0,1,7,10,5],[1,0,3,0,0],[7,3,0,4,0],[10,0,4,0,2],[5,0,0,2,0]]' id='myInput2'>
-            <button title='Click to copy' class='btn btn-sm btn-primary my-1' onClick='myFunction2()'>Sample 2</button>">
-            <i class="fa fa-code"></i> Sample Input 
-            <span class="sr-only">(current)</span>
-          </span>
--->
+            <button title='Click to copy' class='btn btn-sm btn-primary my-1' onClick='myFunction2()'>Sample 2</button>"
+        >
+          <i class="fa fa-code"></i> Sample Input
+          <span class="sr-only">(current)</span>
+        </span>
       </div>
-
     </nav>
 
     <div class="mx-1 my-2 row">
@@ -142,7 +195,7 @@
         <label class="form-check-label ml-4">Select Algorithm : </label>
         <div class="form-check form-check-inline">
           <input
-          for="inlineRadio1"
+            for="inlineRadio1"
             class="form-check-input"
             checked
             type="radio"
@@ -166,7 +219,8 @@
 
       <div class="col-md-3 my-1" style="border: 1px solid rgb(103, 252, 250)">
         <div id="res" class="text-center display-5 p-1 col-md-12">
-          Minimum spanning edges
+          Minimum spanning cost:
+          <b><span style="color: blue" id="min-span-cost">N.A.</span></b>
           <hr />
         </div>
         <ol id="textResult"></ol>
@@ -199,32 +253,28 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
-  <script>
-    $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip();   
+  <script src="mst_Prims.js">
+    $(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();
     });
     function myFunction1() {
-      
-  var copyText1 = document.getElementById("myInput1");
-  copyText1.select();
-  copyText1.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText1.value);
-  alert("Sample Input Copied!!")
-  
-  
-}
-function myFunction2() {
-  var copyText2 = document.getElementById("myInput2");
-  copyText2.select();
-  copyText2.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText2.value);
-  alert("Sample Input Copied!!")
-  
-}
-    </script>
+      var copyText1 = document.getElementById("myInput1");
+      copyText1.select();
+      copyText1.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText1.value);
+      alert("Sample Input Copied!!");
+    }
+    function myFunction2() {
+      var copyText2 = document.getElementById("myInput2");
+      copyText2.select();
+      copyText2.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText2.value);
+      alert("Sample Input Copied!!");
+    }
+  </script>
   <script>
     function fetchMatrix() {
-      document.getElementById('textResult').innerHTML = '';
+      document.getElementById("textResult").innerHTML = "";
       if (JSON.parse(document.getElementById("matrix-value").value)) {
         var radioValue = document.querySelector(
           'input[name="inlineRadioOptions"]:checked'
@@ -241,7 +291,7 @@ function myFunction2() {
         mainBox.appendChild(newdiv);
 
         var mat = JSON.parse(document.getElementById("matrix-value").value);
-        // console.log(mat)
+
         var vertices = mat[0].length;
 
         nodes = [];
@@ -342,6 +392,7 @@ function myFunction2() {
 
         // ----------------------------------------------------------------------------------------------------------------------
 
+        const costEle = document.getElementById("min-span-cost");
         if (radioValue == "prims") {
           let V = vertices;
 
@@ -368,20 +419,21 @@ function myFunction2() {
           }
 
           async function printMST(parent, graph) {
-            for (let i = 1; i < V; i++) {
-              await sleep(5000);
+            let cost = 0;
+            for (let i = 0; i < parent.length; i++) {
+              const currCost = parent[i][0];
               document.getElementById("res").classList.add("d-block");
               var listele = document.createElement("li");
               // Create a text node:
               console.log(
                 `${String.fromCharCode(
-                  parent[i] + 65
-                )} --> ${String.fromCharCode(i + 65)}`
+                  parent[i][1] + 65
+                )} --> ${String.fromCharCode(parent[i][2] + 65)}`
               );
               const textnode = document.createTextNode(
                 `${String.fromCharCode(
-                  parent[i] + 65
-                )} --> ${String.fromCharCode(i + 65)}`
+                  parent[i][1] + 65
+                )} --> ${String.fromCharCode(parent[i][2] + 65)}`
               );
               // Append the text node to the "li" node:
               listele.classList.add("badge");
@@ -392,16 +444,15 @@ function myFunction2() {
               // Append the "li" node to the list:
               document.getElementById("textResult").appendChild(listele);
 
-              // document.write(parent[i] + "   -  " + i + "<br>");
+              // document.write(parent[i][1] + "   -  " + i + "<br>");
               edges.forEach((element, ind) => {
                 // console.log("---->",element.from.charCodeAt(0)-65,element.to.charCodeAt(0)-65)
                 if (
-                  (element.from.charCodeAt(0) - 65 == String(parent[i]) &&
-                    element.to.charCodeAt(0) - 65 == String(i)) ||
-                  (element.from.charCodeAt(0) - 65 == String(i) &&
-                    element.to.charCodeAt(0) - 65 == String(parent[i]))
+                  (element.from.charCodeAt(0) - 65 == String(parent[i][1]) &&
+                    element.to.charCodeAt(0) - 65 == String(parent[i][2])) ||
+                  (element.from.charCodeAt(0) - 65 == String(parent[i][2]) &&
+                    element.to.charCodeAt(0) - 65 == String(parent[i][1]))
                 ) {
-                  console.log("helooooooooooooooooooooooooooo");
                   edges.push({
                     from: `${element.from}`,
                     to: `${element.to}`,
@@ -478,6 +529,9 @@ function myFunction2() {
                   });
                 }
               });
+              costEle.innerHTML = cost + currCost;
+              cost += currCost;
+              await sleep(2000);
             }
             // console.log("edddgees====>",edges)
 
@@ -490,6 +544,7 @@ function myFunction2() {
           // a graph represented using adjacency
           // matrix representation
           function primMST(graph) {
+            let res = {};
             // Array to store constructed MST
             let parent = [];
 
@@ -521,14 +576,19 @@ function myFunction2() {
               // the adjacent vertices of the picked vertex.
               // Consider only those vertices which are not
               // yet included in MST
-              for (let v = 0; v < V; v++)
+              for (let v = 0; v < V; v++) {
                 // graph[u][v] is non zero only for adjacent vertices of m
                 // mstSet[v] is false for vertices not yet included in MST
                 // Update the key only if graph[u][v] is smaller than key[v]
-                if (graph[u][v] && mstSet[v] == false && graph[u][v] < key[v])
+                if (graph[u][v] && mstSet[v] == false && graph[u][v] < key[v]) {
                   (parent[v] = u), (key[v] = graph[u][v]);
+                }
+              }
             }
 
+            console.log(parent)
+            console.log(graph)
+            
             // print the constructed MST
             printMST(parent, graph);
           }
@@ -537,9 +597,28 @@ function myFunction2() {
 
           let graph = mat;
 
+          const newGraph = {};
+          mat.forEach((neighbors, from) => {
+            const temp = [];
+            neighbors.forEach((weight, index) => {
+              if (weight !== 0) {
+                temp.push({ to: index, weight });
+              }
+            });
+            newGraph[from] = temp;
+          });
+
           // Print the solution
-          primMST(graph);
-        } else if (radioValue == "kruskals") {
+          var start = 0;
+          const mst = prim(newGraph, start);
+
+          console.log("Answer: ");
+          console.log(mst);
+          // primMST(graph);
+          const temp = mst.map(obj => [obj.weight, obj.from, obj.to])
+          printMST(temp, graph);
+        }
+        else if (radioValue == "kruskals") {
           function sleep(time) {
             return new Promise((resolve) => setTimeout(resolve, time));
           }
@@ -609,7 +688,6 @@ function myFunction2() {
           async function load() {
             for (let i = 0; i < mst.length; i++) {
               const arrel = mst[i];
-              await sleep(5000);
 
               var listele = document.createElement("li");
               const textnode = document.createTextNode(
@@ -626,14 +704,12 @@ function myFunction2() {
               // Append the "li" node to the list:
               document.getElementById("textResult").appendChild(listele);
 
-
-              
               edges.forEach((element, ind) => {
                 if (
-                  ((String.fromCharCode(arrel[0] + 65) == element.from) &&
-                    (String.fromCharCode(arrel[1] + 65) == element.to)) ||
-                  ((String.fromCharCode(arrel[1] + 65) == element.from) &&
-                    (String.fromCharCode(arrel[0] + 65) == element.to))
+                  (String.fromCharCode(arrel[0] + 65) == element.from &&
+                    String.fromCharCode(arrel[1] + 65) == element.to) ||
+                  (String.fromCharCode(arrel[1] + 65) == element.from &&
+                    String.fromCharCode(arrel[0] + 65) == element.to)
                 ) {
                   edges.push({
                     from: `${element.from}`,
@@ -711,15 +787,11 @@ function myFunction2() {
                   });
                 }
               });
-
-              
+              await sleep(2000);
             }
-
           }
           load();
         }
-
-
       } else {
         alert("Please input adjacency matrix and try again.");
       }
